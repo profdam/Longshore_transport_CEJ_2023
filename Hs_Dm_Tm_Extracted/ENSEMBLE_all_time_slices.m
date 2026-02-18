@@ -1,0 +1,204 @@
+%Load Data
+clc;clear;
+load('/home/profdam/Downloads/INPUT_DATA/CSIRO/Hs_Dm_Tm_Extracted/All_models_historical_R0p5.mat')
+%% Produce ENSEMBLE of regrridded data
+ENSEMBLE_hs_hist = cat(4,ACCESS1_0_hs0p5_1979_2005,BCC_CSM1_1_hs0p5_1979_2005,CNRM_CM5_hs0p5_1979_2005,GFDL_CM3_hs0p5_1979_2005,HADGEM2_ES_hs0p5_1979_2005,INM_CM4_hs0p5_1979_2005,MIROC5_hs0p5_1979_2005,MRI_CGCM3_hs0p5_1979_2005);
+ENSEMBLE_hs_hist =nanmean(ENSEMBLE_hs_hist,4);
+
+ENSEMBLE_tm_hist = cat(4,ACCESS1_0_tm0p5_1979_2005,BCC_CSM1_1_tm0p5_1979_2005,CNRM_CM5_tm0p5_1979_2005,GFDL_CM3_tm0p5_1979_2005,HADGEM2_ES_tm0p5_1979_2005,INM_CM4_tm0p5_1979_2005,MIROC5_tm0p5_1979_2005,MRI_CGCM3_tm0p5_1979_2005);
+ENSEMBLE_tm_hist =nanmean(ENSEMBLE_tm_hist,4);
+
+ENSEMBLE_dm_hist = cat(4,ACCESS1_0_dm0p5_1979_2005,BCC_CSM1_1_dm0p5_1979_2005,CNRM_CM5_dm0p5_1979_2005,GFDL_CM3_dm0p5_1979_2005,HADGEM2_ES_dm0p5_1979_2005,INM_CM4_dm0p5_1979_2005,MIROC5_dm0p5_1979_2005,MRI_CGCM3_dm0p5_1979_2005);
+ENSEMBLE_dm_hist =nanmean(ENSEMBLE_dm_hist,4);
+
+clearvars -EXCEPT ENSEMBLE_dm_hist ENSEMBLE_hs_hist ENSEMBLE_tm_hist
+
+%%
+
+load('/home/profdam/Downloads/INPUT_DATA/CSIRO/Hs_Dm_Tm_Extracted/All_models_End21C_RCP4_5_R0p5.mat')
+
+%% Make all variables have same dimensions by filling with NaNs
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_dm0p5_2081_2100))=BCC_CSM1_1_dm0p5_2081_2100;
+BCC_CSM1_1_dm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_tm0p5_2081_2100))=BCC_CSM1_1_tm0p5_2081_2100;
+BCC_CSM1_1_tm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_hs0p5_2081_2100))=BCC_CSM1_1_hs0p5_2081_2100;
+BCC_CSM1_1_hs0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_dm0p5_2081_2100))=HADGEM2_ES_dm0p5_2081_2100;
+HADGEM2_ES_dm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_hs0p5_2081_2100))=HADGEM2_ES_hs0p5_2081_2100;
+HADGEM2_ES_hs0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_tm0p5_2081_2100))=HADGEM2_ES_tm0p5_2081_2100;
+HADGEM2_ES_tm0p5_2081_2100=aaa;
+
+
+%% Produce ENSEMBLE of regrridded data
+ENSEMBLE_hs_End_4p5 = cat(4,ACCESS1_0_hs0p5_2081_2100,BCC_CSM1_1_hs0p5_2081_2100,CNRM_CM5_hs0p5_2081_2100,GFDL_CM3_hs0p5_2081_2100,HADGEM2_ES_hs0p5_2081_2100,INM_CM4_hs0p5_2081_2100,MIROC5_hs0p5_2081_2100,MRI_CGCM3_hs0p5_2081_2100);
+ENSEMBLE_hs_End_4p5 =nanmean(ENSEMBLE_hs_End_4p5,4);
+
+ENSEMBLE_tm_End_4p5 = cat(4,ACCESS1_0_tm0p5_2081_2100,BCC_CSM1_1_tm0p5_2081_2100,CNRM_CM5_tm0p5_2081_2100,GFDL_CM3_tm0p5_2081_2100,HADGEM2_ES_tm0p5_2081_2100,INM_CM4_tm0p5_2081_2100,MIROC5_tm0p5_2081_2100,MRI_CGCM3_tm0p5_2081_2100);
+ENSEMBLE_tm_End_4p5 =nanmean(ENSEMBLE_tm_End_4p5,4);
+
+ENSEMBLE_dm_End_4p5 = cat(4,ACCESS1_0_dm0p5_2081_2100,BCC_CSM1_1_dm0p5_2081_2100,CNRM_CM5_dm0p5_2081_2100,GFDL_CM3_dm0p5_2081_2100,HADGEM2_ES_dm0p5_2081_2100,INM_CM4_dm0p5_2081_2100,MIROC5_dm0p5_2081_2100,MRI_CGCM3_dm0p5_2081_2100);
+ENSEMBLE_dm_End_4p5 =nanmean(ENSEMBLE_dm_End_4p5,4);
+
+clearvars -EXCEPT ENSEMBLE_dm_hist ENSEMBLE_hs_hist ENSEMBLE_tm_hist...
+    ENSEMBLE_dm_End_4p5 ENSEMBLE_hs_End_4p5 ENSEMBLE_tm_End_4p5
+
+%%
+
+load('/home/profdam/Downloads/INPUT_DATA/CSIRO/Hs_Dm_Tm_Extracted/All_models_End21C_RCP8_5_R0p5.mat')
+
+%% Make all variables have same dimensions by filling with NaNs
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_dm0p5_2081_2100))=BCC_CSM1_1_dm0p5_2081_2100;
+BCC_CSM1_1_dm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_tm0p5_2081_2100))=BCC_CSM1_1_tm0p5_2081_2100;
+BCC_CSM1_1_tm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(BCC_CSM1_1_hs0p5_2081_2100))=BCC_CSM1_1_hs0p5_2081_2100;
+BCC_CSM1_1_hs0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_dm0p5_2081_2100))=HADGEM2_ES_dm0p5_2081_2100;
+HADGEM2_ES_dm0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_hs0p5_2081_2100))=HADGEM2_ES_hs0p5_2081_2100;
+HADGEM2_ES_hs0p5_2081_2100=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_tm0p5_2081_2100))=HADGEM2_ES_tm0p5_2081_2100;
+HADGEM2_ES_tm0p5_2081_2100=aaa;
+
+
+%% Produce ENSEMBLE of regrridded data
+ENSEMBLE_hs_End_8p5 = cat(4,ACCESS1_0_hs0p5_2081_2100,BCC_CSM1_1_hs0p5_2081_2100,CNRM_CM5_hs0p5_2081_2100,GFDL_CM3_hs0p5_2081_2100,HADGEM2_ES_hs0p5_2081_2100,INM_CM4_hs0p5_2081_2100,MIROC5_hs0p5_2081_2100,MRI_CGCM3_hs0p5_2081_2100);
+ENSEMBLE_hs_End_8p5 =nanmean(ENSEMBLE_hs_End_8p5,4);
+
+ENSEMBLE_tm_End_8p5 = cat(4,ACCESS1_0_tm0p5_2081_2100,BCC_CSM1_1_tm0p5_2081_2100,CNRM_CM5_tm0p5_2081_2100,GFDL_CM3_tm0p5_2081_2100,HADGEM2_ES_tm0p5_2081_2100,INM_CM4_tm0p5_2081_2100,MIROC5_tm0p5_2081_2100,MRI_CGCM3_tm0p5_2081_2100);
+ENSEMBLE_tm_End_8p5 =nanmean(ENSEMBLE_tm_End_8p5,4);
+
+ENSEMBLE_dm_End_8p5 = cat(4,ACCESS1_0_dm0p5_2081_2100,BCC_CSM1_1_dm0p5_2081_2100,CNRM_CM5_dm0p5_2081_2100,GFDL_CM3_dm0p5_2081_2100,HADGEM2_ES_dm0p5_2081_2100,INM_CM4_dm0p5_2081_2100,MIROC5_dm0p5_2081_2100,MRI_CGCM3_dm0p5_2081_2100);
+ENSEMBLE_dm_End_8p5 =nanmean(ENSEMBLE_dm_End_8p5,4);
+
+clearvars -EXCEPT ENSEMBLE_dm_hist ENSEMBLE_hs_hist ENSEMBLE_tm_hist...
+    ENSEMBLE_dm_End_4p5 ENSEMBLE_hs_End_4p5 ENSEMBLE_tm_End_4p5...
+    ENSEMBLE_dm_End_8p5 ENSEMBLE_hs_End_8p5 ENSEMBLE_tm_End_8p5
+
+%%
+
+load('/home/profdam/Downloads/INPUT_DATA/CSIRO/Hs_Dm_Tm_Extracted/All_models_Mid21C_RCP4_5_R0p5.mat')
+
+%% Make all variables have same dimensions by filling with NaNs
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_dm0p5_2026_2045))=BCC_CSM1_1_dm0p5_2026_2045;
+% BCC_CSM1_1_dm0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_tm0p5_2026_2045))=BCC_CSM1_1_tm0p5_2026_2045;
+% BCC_CSM1_1_tm0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_hs0p5_2026_2045))=BCC_CSM1_1_hs0p5_2026_2045;
+% BCC_CSM1_1_hs0p5_2026_2045=aaa;
+
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(HADGEM2_ES_dm0p5_2026_2045))=HADGEM2_ES_dm0p5_2026_2045;
+% HADGEM2_ES_dm0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(HADGEM2_ES_hs0p5_2026_2045))=HADGEM2_ES_hs0p5_2026_2045;
+% HADGEM2_ES_hs0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(HADGEM2_ES_tm0p5_2026_2045))=HADGEM2_ES_tm0p5_2026_2045;
+% HADGEM2_ES_tm0p5_2026_2045=aaa;
+% 
+
+%% Produce ENSEMBLE of regrridded data
+ENSEMBLE_hs_Mid_4p5 = cat(4,ACCESS1_0_hs0p5_2026_2045,BCC_CSM1_1_hs0p5_2026_2045,CNRM_CM5_hs0p5_2026_2045,GFDL_CM3_hs0p5_2026_2045,HADGEM2_ES_hs0p5_2026_2045,INM_CM4_hs0p5_2026_2045,MIROC5_hs0p5_2026_2045,MRI_CGCM3_hs0p5_2026_2045);
+ENSEMBLE_hs_Mid_4p5 =nanmean(ENSEMBLE_hs_Mid_4p5,4);
+
+ENSEMBLE_tm_Mid_4p5 = cat(4,ACCESS1_0_tm0p5_2026_2045,BCC_CSM1_1_tm0p5_2026_2045,CNRM_CM5_tm0p5_2026_2045,GFDL_CM3_tm0p5_2026_2045,HADGEM2_ES_tm0p5_2026_2045,INM_CM4_tm0p5_2026_2045,MIROC5_tm0p5_2026_2045,MRI_CGCM3_tm0p5_2026_2045);
+ENSEMBLE_tm_Mid_4p5 =nanmean(ENSEMBLE_tm_Mid_4p5,4);
+
+ENSEMBLE_dm_Mid_4p5 = cat(4,ACCESS1_0_dm0p5_2026_2045,BCC_CSM1_1_dm0p5_2026_2045,CNRM_CM5_dm0p5_2026_2045,GFDL_CM3_dm0p5_2026_2045,HADGEM2_ES_dm0p5_2026_2045,INM_CM4_dm0p5_2026_2045,MIROC5_dm0p5_2026_2045,MRI_CGCM3_dm0p5_2026_2045);
+ENSEMBLE_dm_Mid_4p5 =nanmean(ENSEMBLE_dm_Mid_4p5,4);
+
+clearvars -EXCEPT ENSEMBLE_dm_hist ENSEMBLE_hs_hist ENSEMBLE_tm_hist...
+    ENSEMBLE_dm_End_4p5 ENSEMBLE_hs_End_4p5 ENSEMBLE_tm_End_4p5...
+    ENSEMBLE_dm_Mid_4p5 ENSEMBLE_hs_Mid_4p5 ENSEMBLE_tm_Mid_4p5...
+    ENSEMBLE_dm_End_8p5 ENSEMBLE_hs_End_8p5 ENSEMBLE_tm_End_8p5
+
+
+%%
+
+load('/home/profdam/Downloads/INPUT_DATA/CSIRO/Hs_Dm_Tm_Extracted/All_models_Mid21C_RCP8_5_R0p5.mat')
+
+%% Make all variables have same dimensions by filling with NaNs
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_dm0p5_2026_2045))=BCC_CSM1_1_dm0p5_2026_2045;
+% BCC_CSM1_1_dm0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_tm0p5_2026_2045))=BCC_CSM1_1_tm0p5_2026_2045;
+% BCC_CSM1_1_tm0p5_2026_2045=aaa;
+% 
+% aaa= nan(81, 81, 240);
+% aaa(:,:,1:length(BCC_CSM1_1_hs0p5_2026_2045))=BCC_CSM1_1_hs0p5_2026_2045;
+% BCC_CSM1_1_hs0p5_2026_2045=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_dm0p5_2026_2045))=HADGEM2_ES_dm0p5_2026_2045;
+HADGEM2_ES_dm0p5_2026_2045=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_hs0p5_2026_2045))=HADGEM2_ES_hs0p5_2026_2045;
+HADGEM2_ES_hs0p5_2026_2045=aaa;
+
+aaa= nan(81, 81, 240);
+aaa(:,:,1:length(HADGEM2_ES_tm0p5_2026_2045))=HADGEM2_ES_tm0p5_2026_2045;
+HADGEM2_ES_tm0p5_2026_2045=aaa;
+
+
+%% Produce ENSEMBLE of regrridded data
+ENSEMBLE_hs_Mid_8p5 = cat(4,ACCESS1_0_hs0p5_2026_2045,BCC_CSM1_1_hs0p5_2026_2045,CNRM_CM5_hs0p5_2026_2045,GFDL_CM3_hs0p5_2026_2045,HADGEM2_ES_hs0p5_2026_2045,INM_CM4_hs0p5_2026_2045,MIROC5_hs0p5_2026_2045,MRI_CGCM3_hs0p5_2026_2045);
+ENSEMBLE_hs_Mid_8p5 =nanmean(ENSEMBLE_hs_Mid_8p5,4);
+
+ENSEMBLE_tm_Mid_8p5 = cat(4,ACCESS1_0_tm0p5_2026_2045,BCC_CSM1_1_tm0p5_2026_2045,CNRM_CM5_tm0p5_2026_2045,GFDL_CM3_tm0p5_2026_2045,HADGEM2_ES_tm0p5_2026_2045,INM_CM4_tm0p5_2026_2045,MIROC5_tm0p5_2026_2045,MRI_CGCM3_tm0p5_2026_2045);
+ENSEMBLE_tm_Mid_8p5 =nanmean(ENSEMBLE_tm_Mid_8p5,4);
+
+ENSEMBLE_dm_Mid_8p5 = cat(4,ACCESS1_0_dm0p5_2026_2045,BCC_CSM1_1_dm0p5_2026_2045,CNRM_CM5_dm0p5_2026_2045,GFDL_CM3_dm0p5_2026_2045,HADGEM2_ES_dm0p5_2026_2045,INM_CM4_dm0p5_2026_2045,MIROC5_dm0p5_2026_2045,MRI_CGCM3_dm0p5_2026_2045);
+ENSEMBLE_dm_Mid_8p5 =nanmean(ENSEMBLE_dm_Mid_8p5,4);
+
+clearvars -EXCEPT ENSEMBLE_dm_hist ENSEMBLE_hs_hist ENSEMBLE_tm_hist...
+    ENSEMBLE_dm_End_4p5 ENSEMBLE_hs_End_4p5 ENSEMBLE_tm_End_4p5...
+    ENSEMBLE_dm_End_8p5 ENSEMBLE_hs_End_8p5 ENSEMBLE_tm_End_8p5...
+    ENSEMBLE_dm_Mid_8p5 ENSEMBLE_hs_Mid_8p5 ENSEMBLE_tm_Mid_8p5...
+    ENSEMBLE_dm_Mid_4p5 ENSEMBLE_hs_Mid_4p5 ENSEMBLE_tm_Mid_4p5...
+    Xlong Ylat
+
+
+
+
+
+
+
+
+
+
